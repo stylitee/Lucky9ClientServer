@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VFF5IaDix8E2x6tcSSU4u5gdmIQFjemsncPq0ti6LrJ02bps0j6BcamaDjJKsVnqbJDrXtyER2MeDdRwwkltVw==",
+  "dgSpecHash": "soEbuEdIHvkmENy8u8nNHa9jXmjrUgEHX0inwBt0ZzIHT47kbp5ypUrR5HtpV4hAOYm+6CP7uKeyXVstFPNWDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\balon\\source\\repos\\ClientServerGame\\ClientServerGame\\ClientServerGame.csproj",
+  "projectFilePath": "C:\\Users\\balon\\Desktop\\Lucky9ClientServer\\ClientServerGame\\ClientServerGame\\ClientServerGame.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\balon\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\balon\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

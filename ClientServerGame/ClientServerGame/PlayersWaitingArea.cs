@@ -17,7 +17,9 @@ namespace ClientServerGame
     public partial class PlayersWaitingArea : Form
     {
         delegate void SetTextCallback(string text);
+        delegate void LabelTextCallback(string text);
         bool timerrs = true;
+        int flag = 0;
         List<Player> lstPlayer = null;
         System.Timers.Timer aTimer = new System.Timers.Timer(999999999);
         public PlayersWaitingArea()
@@ -28,6 +30,8 @@ namespace ClientServerGame
             lblNumberOfPlayers.Text = "Max players: " + HostGame.maxPlayer;
             aTimer.Interval = 2000;
             aTimer.Enabled = timerrs;
+
+            List<MatchID> matchIDs = new List<MatchID>();
         }
 
         private void SetText(string text)
@@ -47,7 +51,7 @@ namespace ClientServerGame
         {
             if (this.lblJoinedPlayers.InvokeRequired)
             {
-                SetTextCallback d = new SetTextCallback(SetText);
+                LabelTextCallback d = new LabelTextCallback(SetText);
                 this.Invoke(d, new object[] { text });
             }
             else
@@ -81,28 +85,51 @@ namespace ClientServerGame
                 if (lstPlayer.Count.ToString() != HostGame.maxPlayer)
                 {
                     LblSetText("Joined Players: " + lstPlayer.Count.ToString());
+                    if (flag == 0)
+                    {
+                        List<Player> players = PlayerHelper.GetPlayers();
+                        if (players[0].playerName != Form1.PlayerName)
+                        {
+                            SetText("Waiting for the host to start");
+                            flag = 1;
+                        }
+                    }
                     lstPlayer.Clear();
                 }
                 else
                 {
                     LblSetText("Joined Players: " + lstPlayer.Count.ToString());
+                    if (flag == 0)
+                    {
+                        List<Player> players = PlayerHelper.GetPlayers();
+                        if (players.Count != 1 && players[0].playerName != Form1.PlayerName)
+                        {
+                            SetText("Waiting for the host to start");
+                            flag = 1;
+                        }
+                    }
                     lstPlayer.Clear();
                     timerrs = false;
                 }
+                List<MatchID> matches = MatchHelper.GetAllMatches();
+                if(matches[0].isStart != null)
+                {
+                    BattleBegins battleBegins = new BattleBegins();
+                    battleBegins.Show();
+                    this.Hide();
+
+                }
+
             }
             catch (System.InvalidOperationException)
             {
-                
+                throw;
             }
         }
 
         public void addPlayers()
         {
-            
-            if (lstPlayer.Count.ToString() != HostGame.maxPlayer)
-            {
-                flpPlayers.Controls.Clear();
-            }
+            flpPlayers.Controls.Clear();
             foreach (var c in lstPlayer)
             {
                 Players players = new Players();

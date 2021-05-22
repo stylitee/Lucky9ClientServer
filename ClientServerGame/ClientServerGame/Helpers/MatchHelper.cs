@@ -32,6 +32,7 @@ namespace ClientServerGame.Helpers
                     match.player3 = dr.Field<string>("player3");
                     match.player4 = dr.Field<string>("player4");
                     match.maxPlayer = dr.Field<string>("maxPlayer");
+                    match.maxPlayer = dr.Field<string>("isStart");
                     list.Add(match);
                 }
             }
@@ -50,6 +51,7 @@ namespace ClientServerGame.Helpers
                                            new SqlParameter("@player3",              DBNull.Value),
                                            new SqlParameter("@player4",              DBNull.Value),
                                            new SqlParameter("@maxPlayer",            max),
+                                           new SqlParameter("@isStart",            DBNull.Value)
 
                                        };
                 db_conn.ExecuteNonQuery("CreateMatch", param);

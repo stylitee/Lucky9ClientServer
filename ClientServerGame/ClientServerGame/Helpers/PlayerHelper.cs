@@ -28,6 +28,7 @@ namespace ClientServerGame.Helpers
                     Player player = new Player();
                     player.id = dr.Field<int>("id");
                     player.playerName = dr.Field<string>("playerName");
+                    player.card_values = dr.Field<string>("card_values");
                     list.Add(player);
                 }
             }
@@ -40,7 +41,8 @@ namespace ClientServerGame.Helpers
             {
                 if (!db_conn.IsConnected) return;
                 SqlParameter[] param = {
-                                           new SqlParameter("@playerName",            player.playerName)
+                                           new SqlParameter("@playerName",            player.playerName),
+                                           new SqlParameter("@card_values",           DBNull.Value)
                                        };
                 db_conn.ExecuteNonQuery("SavePlayer", param);
             }

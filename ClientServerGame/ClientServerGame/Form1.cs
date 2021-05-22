@@ -45,28 +45,37 @@ namespace ClientServerGame
             {
                 List<MatchID> matches = MatchHelper.GetAllMatches();
                 List<Player> players = PlayerHelper.GetPlayers();
-                if (matches[0].id == txtMatchID.Text)
+                if(matches.Count != 0)
                 {
-                    if (players.Count.ToString() != matches[0].maxPlayer)
+                    if (matches[0].id == txtMatchID.Text)
                     {
-                        Player player = new Player();
-                        player.playerName = txtName.Text;
-                        PlayerHelper.SavePlayer(player);
+                        if (players.Count.ToString() != matches[0].maxPlayer)
+                        {
+                            Player player = new Player();
+                            player.playerName = txtName.Text;
+                            PlayerName = txtName.Text;
+                            PlayerHelper.SavePlayer(player);
 
-                        PlayersWaitingArea playersWaiting = new PlayersWaitingArea();
-                        playersWaiting.Show();
-                        this.Hide();
+                            PlayersWaitingArea playersWaiting = new PlayersWaitingArea();
+                            playersWaiting.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Match is full");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Match is full");
+                        MessageBox.Show("Invalid Match ID please try again");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Invalid Match ID please try again");
+                    MessageBox.Show("Match is not found.");
                 }
             }
+                
         }  
     }
 }

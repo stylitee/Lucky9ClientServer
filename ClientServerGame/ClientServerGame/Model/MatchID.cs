@@ -14,5 +14,6 @@ namespace ClientServerGame.Model
         public string player3 { get; set; }
         public string player4 { get; set; }
         public string maxPlayer { get; set; }
+        public string isStart { get; set; }
     }
 }
