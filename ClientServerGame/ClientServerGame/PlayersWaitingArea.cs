@@ -22,41 +22,18 @@ namespace ClientServerGame
         int flag = 0;
         List<Player> lstPlayer = null;
         System.Timers.Timer aTimer = new System.Timers.Timer(999999999);
-        System.Timers.Timer bTimer = new System.Timers.Timer(999999999);
         public PlayersWaitingArea()
         {
             InitializeComponent();
             lblMatchID.Text = "Match ID: " + HostGame.id;
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            bTimer.Elapsed += new ElapsedEventHandler(timeEvent);
             lblNumberOfPlayers.Text = "Max players: " + HostGame.maxPlayer;
             aTimer.Interval = 2000;
             aTimer.Enabled = timerrs;
-            bTimer.Interval = 2000;
-            bTimer.Enabled = checker_;
 
             List<MatchID> matchIDs = new List<MatchID>();
         }
 
-        private void timeEvent(object sender, ElapsedEventArgs e)
-        {
-            Task.Run(() => startNow());
-        }
-
-        public void startNow()
-        {
-            List<MatchID> lstMatch = null;
-            lstMatch = MatchHelper.GetAllMatches();
-            if (lstMatch[0].isStart != null || lstMatch[0].isStart != "" || lstMatch[0].isStart != "No")
-            {
-
-            }
-            else
-            {
-                SetStartingText("Game Starting: Yes");
-                checker_ = false;
-            }
-        }
 
         private void SetText(string text)
         {
@@ -68,19 +45,6 @@ namespace ClientServerGame
             else
             {
                 this.btnStart.Text = text;
-            }
-        }
-
-        private void SetStartingText(string text)
-        {
-            if (this.btnStart.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetText);
-                this.Invoke(d, new object[] { text });
-            }
-            else
-            {
-                this.lblGameStarting.Text = text;
             }
         }
 
@@ -191,13 +155,6 @@ namespace ClientServerGame
             addPlayers();
         }
 
-        private void lblGameStarting_TextChanged(object sender, EventArgs e)
-        {
-            BattleBegins battle = new BattleBegins();
-            battle.Show();
-            this.Hide();
-        }
-
         private void btnStart_Click(object sender, EventArgs e)
         {
             if (btnStart.Text == "Waiting for other Players")
@@ -244,7 +201,14 @@ namespace ClientServerGame
 
                     MatchHelper.UpdateMatch4(matchHelper);
                 }
-
+                foreach(var c in lstPlayer)
+                {
+                    if(c.playerName == Program.playerName)
+                    {
+                        PlayerHelper.updateReadyStatus(c.id);
+                    }
+                }
+                
                 BattleBegins battle = new BattleBegins();
                 battle.Show();
                 this.Hide();

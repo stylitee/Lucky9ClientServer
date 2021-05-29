@@ -51,5 +51,18 @@ namespace ClientServerGame.Helpers
                 db_conn.ExecuteNonQuery("SavePlayer", param);
             }
         }
+
+        public static void updateReadyStatus(int player_id)
+        {
+            using (Connection db_conn = new Connection())
+            {
+                if (!db_conn.IsConnected) return;
+                SqlParameter[] param = {
+                                           new SqlParameter("@isReady",               "Yes"),
+                                           new SqlParameter("@player_id",             player_id),
+                                       };
+                db_conn.ExecuteNonQuery("isReadyPlayer", param);
+            }
+        }
     }
 }

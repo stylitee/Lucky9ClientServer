@@ -24,7 +24,8 @@ namespace ClientServerGame
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(cmbNumberOfPlayers.Text == "" || txtName.Text == "")
+            Program.playerName = txtName.Text;
+            if (cmbNumberOfPlayers.Text == "" || txtName.Text == "")
             {
                 MessageBox.Show("Fields cannot be empty");
             }

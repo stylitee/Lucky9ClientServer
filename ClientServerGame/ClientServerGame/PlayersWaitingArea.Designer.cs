@@ -35,7 +35,6 @@ namespace ClientServerGame
             this.lblNumberOfPlayers = new System.Windows.Forms.Label();
             this.lblMatchID = new System.Windows.Forms.Label();
             this.lblJoinedPlayers = new System.Windows.Forms.Label();
-            this.lblGameStarting = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // flpPlayers
@@ -93,23 +92,12 @@ namespace ClientServerGame
             this.lblJoinedPlayers.TabIndex = 5;
             this.lblJoinedPlayers.Text = "Joined Players: ";
             // 
-            // lblGameStarting
-            // 
-            this.lblGameStarting.AutoSize = true;
-            this.lblGameStarting.Location = new System.Drawing.Point(56, 342);
-            this.lblGameStarting.Name = "lblGameStarting";
-            this.lblGameStarting.Size = new System.Drawing.Size(107, 15);
-            this.lblGameStarting.TabIndex = 6;
-            this.lblGameStarting.Text = "Game Starting: No ";
-            this.lblGameStarting.TextChanged += new System.EventHandler(this.lblGameStarting_TextChanged);
-            // 
             // PlayersWaitingArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(429, 378);
-            this.Controls.Add(this.lblGameStarting);
             this.Controls.Add(this.lblJoinedPlayers);
             this.Controls.Add(this.lblMatchID);
             this.Controls.Add(this.lblNumberOfPlayers);
@@ -131,6 +119,5 @@ namespace ClientServerGame
         private System.Windows.Forms.Label lblNumberOfPlayers;
         private System.Windows.Forms.Label lblMatchID;
         private System.Windows.Forms.Label lblJoinedPlayers;
-        private System.Windows.Forms.Label lblGameStarting;
     }
 }

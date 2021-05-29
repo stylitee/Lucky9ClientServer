@@ -37,7 +37,8 @@ namespace ClientServerGame
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(txtMatchID.Text == "" || txtName.Text == "")
+            Program.playerName = txtName.Text;
+            if (txtMatchID.Text == "" || txtName.Text == "")
             {
                 MessageBox.Show("Fields Cannot be Empty");
             }

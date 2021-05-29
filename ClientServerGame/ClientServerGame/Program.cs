@@ -11,7 +11,9 @@ namespace ClientServerGame
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
+        public static string playerName = "";
         [STAThread]
+        
         static void Main()
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
