@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,14 @@ namespace ClientServerGame.ProgramHelpers
                 BattleBegins.lstOfConnection[counter].Invoke(new Action(() => BattleBegins.lstOfConnection[counter].Text = text));
             else
                 BattleBegins.lstOfConnection[counter].Text = text;
+        }
+
+        public static void ImageChanger(Bitmap bitmap, int counter)
+        {
+            if (BattleBegins.pictureBoxes[counter].InvokeRequired)
+                BattleBegins.pictureBoxes[counter].Invoke(new Action(() => BattleBegins.pictureBoxes[counter].Image = bitmap));
+            else
+                BattleBegins.lstOfConnection[counter].Image = bitmap;
         }
     }
 }

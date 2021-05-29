@@ -56,3 +56,4 @@ C:\Users\balon\Desktop\Lucky9ClientServer\ClientServerGame\ClientServerGame\obj\
 C:\Users\balon\Desktop\Lucky9ClientServer\ClientServerGame\ClientServerGame\obj\Debug\net5.0-windows\ref\ClientServerGame.dll
 C:\Users\balon\Desktop\Lucky9ClientServer\ClientServerGame\ClientServerGame\obj\Debug\net5.0-windows\ClientServerGame.pdb
 C:\Users\balon\Desktop\Lucky9ClientServer\ClientServerGame\ClientServerGame\obj\Debug\net5.0-windows\ClientServerGame.genruntimeconfig.cache
+C:\Users\balon\Desktop\Lucky9ClientServer\ClientServerGame\ClientServerGame\obj\Debug\net5.0-windows\ClientServerGame.Properties.Resources.resources
