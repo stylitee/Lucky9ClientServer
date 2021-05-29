@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace ClientServerGame
     public partial class BattleBegins : Form
     {
         public static List<Label> lstOfConnection = new List<Label>();
+        public static List<Label> gameStatus = new List<Label>();
         public static List<Panel> lspnlActions = new List<Panel>();
         public static List<ComboBox> comboBoxes = new List<ComboBox>();
         public static List<PictureBox> pictureBoxes = new List<PictureBox>();
@@ -40,6 +42,7 @@ namespace ClientServerGame
         public BattleBegins()
         {
             InitializeComponent();
+            gameStatus.Add(lblGameStarts);
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.Interval = 2000;
             aTimer.Enabled = true;
@@ -68,7 +71,7 @@ namespace ClientServerGame
             
             if(generation == 1)
             {
-                generateCard();
+                FunctionHelper.ConnectionLabelChangers("Cards Deployed");
             }
         }
 
@@ -121,6 +124,8 @@ namespace ClientServerGame
                     FunctionHelper.ImageChanger(buklo[generateBukloCardNum()], counter);
                 }
             }
+
+
 
         }
         public void connectionChecker()
@@ -176,6 +181,20 @@ namespace ClientServerGame
         public int generateCardNum()
         {
             return new Random().Next(0, 3);
+        }
+
+        private void lblGameStarts_TextChanged(object sender, EventArgs e)
+        {
+            string values = "";
+            generateCard();
+            List<Player> players = new List<Player>();
+            SqlParameter[] p = { new SqlParameter("@player_name", Program.playerName) };
+            players = PlayerHelper.GetSelectedPlayers(p);
+            foreach(var c in listCardValue)
+            {
+                values += ", " + c.ToString();
+            }
+            PlayerHelper.updateCardValues(players[0].id, values);
         }
 
         public int generateBukloCardNum()

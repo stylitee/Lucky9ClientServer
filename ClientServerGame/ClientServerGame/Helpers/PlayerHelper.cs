@@ -37,6 +37,31 @@ namespace ClientServerGame.Helpers
             return list;
         }
 
+        public static List<Player> GetSelectedPlayers(SqlParameter[] p)
+        {
+            List<Player> list = null;
+
+            using (Connection dal = new Connection())
+            {
+                if (!dal.IsConnected) return null;
+                var data = dal.ExecuteQuery("SelectPlayer", p).Tables[0];
+
+                list = new List<Player>();
+
+                foreach (DataRow dr in data.AsEnumerable())
+                {
+                    Player player = new Player();
+                    player.id = dr.Field<int>("player_id");
+                    player.playerName = dr.Field<string>("player_name");
+                    player.card_values = dr.Field<string>("card_values");
+                    player.UpForSteal = dr.Field<string>("up_for_steal");
+                    player.isReady = dr.Field<string>("is_ready");
+                    list.Add(player);
+                }
+            }
+            return list;
+        }
+
         public static void SavePlayer (Player player)
         {
             using (Connection db_conn = new Connection())
@@ -62,6 +87,19 @@ namespace ClientServerGame.Helpers
                                            new SqlParameter("@player_id",             player_id),
                                        };
                 db_conn.ExecuteNonQuery("isReadyPlayer", param);
+            }
+        }
+
+        public static void updateCardValues(int player_id, string card_values)
+        {
+            using (Connection db_conn = new Connection())
+            {
+                if (!db_conn.IsConnected) return;
+                SqlParameter[] param = {
+                                           new SqlParameter("@card_values",           card_values),
+                                           new SqlParameter("@player_id",             player_id),
+                                       };
+                db_conn.ExecuteNonQuery("AddCardValues", param);
             }
         }
     }

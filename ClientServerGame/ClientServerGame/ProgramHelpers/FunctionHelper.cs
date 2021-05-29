@@ -24,5 +24,13 @@ namespace ClientServerGame.ProgramHelpers
             else
                 BattleBegins.lstOfConnection[counter].Image = bitmap;
         }
+
+        public static void ConnectionLabelChangers(string text)
+        {
+            if (BattleBegins.gameStatus[0].InvokeRequired)
+                BattleBegins.gameStatus[0].Invoke(new Action(() => BattleBegins.gameStatus[0].Text = text));
+            else
+                BattleBegins.gameStatus[0].Text = text;
+        }
     }
 }

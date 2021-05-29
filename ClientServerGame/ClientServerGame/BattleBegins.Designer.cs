@@ -48,6 +48,7 @@ namespace ClientServerGame
             this.button1 = new System.Windows.Forms.Button();
             this.cmbActions = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblGameStarts = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.player2Cards)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player3Cards)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player4Cards)).BeginInit();
@@ -229,12 +230,23 @@ namespace ClientServerGame
             this.label1.TabIndex = 0;
             this.label1.Text = "Choose Action: ";
             // 
+            // lblGameStarts
+            // 
+            this.lblGameStarts.AutoSize = true;
+            this.lblGameStarts.Location = new System.Drawing.Point(12, 9);
+            this.lblGameStarts.Name = "lblGameStarts";
+            this.lblGameStarts.Size = new System.Drawing.Size(26, 15);
+            this.lblGameStarts.TabIndex = 16;
+            this.lblGameStarts.Text = "Idle";
+            this.lblGameStarts.TextChanged += new System.EventHandler(this.lblGameStarts_TextChanged);
+            // 
             // BattleBegins
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(176)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(829, 509);
+            this.Controls.Add(this.lblGameStarts);
             this.Controls.Add(this.pnlActions);
             this.Controls.Add(this.lblValue);
             this.Controls.Add(this.player1Card3);
@@ -287,5 +299,6 @@ namespace ClientServerGame
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cmbActions;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblGameStarts;
     }
 }
