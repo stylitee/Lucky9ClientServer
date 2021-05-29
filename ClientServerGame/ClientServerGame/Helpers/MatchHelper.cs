@@ -64,7 +64,7 @@ namespace ClientServerGame.Helpers
             {
                 if (!db_conn.IsConnected) return;
                 SqlParameter[] param = {
-                                           new SqlParameter("@player_id",                   match.id),
+                                           new SqlParameter("@match_id",                   match.id),
                                            new SqlParameter("@player1",              match.player1),
                                            new SqlParameter("@player2",              match.player2)
                                        };
@@ -78,7 +78,7 @@ namespace ClientServerGame.Helpers
             {
                 if (!db_conn.IsConnected) return;
                 SqlParameter[] param = {
-                                           new SqlParameter("@player_id",                   match.id),
+                                           new SqlParameter("@match_id",                   match.id),
                                            new SqlParameter("@player1",              match.player1),
                                            new SqlParameter("@player2",              match.player2),
                                            new SqlParameter("@player3",              match.player3),
@@ -93,7 +93,7 @@ namespace ClientServerGame.Helpers
             {
                 if (!db_conn.IsConnected) return;
                 SqlParameter[] param = {
-                                           new SqlParameter("@player_id",                   match.id),
+                                           new SqlParameter("@match_id",                   match.id),
                                            new SqlParameter("@player1",              match.player1),
                                            new SqlParameter("@player2",              match.player2),
                                            new SqlParameter("@player3",              match.player3),
