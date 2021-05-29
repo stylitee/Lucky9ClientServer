@@ -46,7 +46,6 @@ namespace ClientServerGame
         public void startNow()
         {
             List<MatchID> lstMatch = null;
-            lstMatch.Clear();
             lstMatch = MatchHelper.GetAllMatches();
             if (lstMatch[0].isStart != null || lstMatch[0].isStart != "" || lstMatch[0].isStart != "No")
             {
