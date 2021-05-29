@@ -51,12 +51,9 @@ namespace ClientServerGame
             {
                 if(c.isReady == "Yes")
                 {
-                    if(counter == 0)
-                    {
-                        string textSetter = "Connected";
-                        FunctionHelper.ConnectionLabelChangers(textSetter, counter);
-                        counter++;
-                    }
+                    string textSetter = "Connected";
+                    FunctionHelper.ConnectionLabelChangers(textSetter, counter);
+                    counter++;
                 }
             }
         }
