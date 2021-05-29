@@ -16,7 +16,7 @@ namespace ClientServerGame.DatabaseClass
         public Connection()
         {
             sqlConn = new SqlConnection();
-            sqlConn.ConnectionString = "Server=tcp:lucky9.database.windows.net,1433;Initial Catalog=Lucky9DB;Persist Security Info=False;User ID=lucky9Admin;Password=@l03e1t3;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"; ;
+            sqlConn.ConnectionString = "Server=tcp:doghaven-capstone.database.windows.net,1433;Initial Catalog=LuckyNineDB;Persist Security Info=False;User ID=doghavenAdmin;Password=@l03e1t3;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"; ;
 
             IsConnected = false;
             try

@@ -26,9 +26,11 @@ namespace ClientServerGame.Helpers
                 foreach (DataRow dr in data.AsEnumerable())
                 {
                     Player player = new Player();
-                    player.id = dr.Field<int>("id");
-                    player.playerName = dr.Field<string>("playerName");
+                    player.id = dr.Field<int>("player_id");
+                    player.playerName = dr.Field<string>("player_name");
                     player.card_values = dr.Field<string>("card_values");
+                    player.UpForSteal = dr.Field<string>("up_for_steal");
+                    player.isReady = dr.Field<string>("is_ready");
                     list.Add(player);
                 }
             }
@@ -41,8 +43,10 @@ namespace ClientServerGame.Helpers
             {
                 if (!db_conn.IsConnected) return;
                 SqlParameter[] param = {
-                                           new SqlParameter("@playerName",            player.playerName),
-                                           new SqlParameter("@card_values",           DBNull.Value)
+                                           new SqlParameter("@player_name",            player.playerName),
+                                           new SqlParameter("@card_values",            DBNull.Value),
+                                           new SqlParameter("@up_for_steal",           DBNull.Value),
+                                           new SqlParameter("@is_ready",              DBNull.Value)
                                        };
                 db_conn.ExecuteNonQuery("SavePlayer", param);
             }
