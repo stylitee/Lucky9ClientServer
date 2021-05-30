@@ -49,6 +49,10 @@ namespace ClientServerGame
             this.cmbActions = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblGameStarts = new System.Windows.Forms.Label();
+            this.lblPlayer2Move = new System.Windows.Forms.Label();
+            this.lblPlayer1Move = new System.Windows.Forms.Label();
+            this.lblPlayer3Move = new System.Windows.Forms.Label();
+            this.lblPlayer4Move = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.player2Cards)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player3Cards)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player4Cards)).BeginInit();
@@ -212,6 +216,7 @@ namespace ClientServerGame
             this.button1.TabIndex = 2;
             this.button1.Text = "Confirm";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cmbActions
             // 
@@ -240,12 +245,52 @@ namespace ClientServerGame
             this.lblGameStarts.Text = "Idle";
             this.lblGameStarts.TextChanged += new System.EventHandler(this.lblGameStarts_TextChanged);
             // 
+            // lblPlayer2Move
+            // 
+            this.lblPlayer2Move.AutoSize = true;
+            this.lblPlayer2Move.Location = new System.Drawing.Point(31, 288);
+            this.lblPlayer2Move.Name = "lblPlayer2Move";
+            this.lblPlayer2Move.Size = new System.Drawing.Size(72, 15);
+            this.lblPlayer2Move.TabIndex = 17;
+            this.lblPlayer2Move.Text = "Move Status";
+            // 
+            // lblPlayer1Move
+            // 
+            this.lblPlayer1Move.AutoSize = true;
+            this.lblPlayer1Move.Location = new System.Drawing.Point(398, 325);
+            this.lblPlayer1Move.Name = "lblPlayer1Move";
+            this.lblPlayer1Move.Size = new System.Drawing.Size(72, 15);
+            this.lblPlayer1Move.TabIndex = 18;
+            this.lblPlayer1Move.Text = "Move Status";
+            // 
+            // lblPlayer3Move
+            // 
+            this.lblPlayer3Move.AutoSize = true;
+            this.lblPlayer3Move.Location = new System.Drawing.Point(409, 101);
+            this.lblPlayer3Move.Name = "lblPlayer3Move";
+            this.lblPlayer3Move.Size = new System.Drawing.Size(72, 15);
+            this.lblPlayer3Move.TabIndex = 19;
+            this.lblPlayer3Move.Text = "Move Status";
+            // 
+            // lblPlayer4Move
+            // 
+            this.lblPlayer4Move.AutoSize = true;
+            this.lblPlayer4Move.Location = new System.Drawing.Point(732, 288);
+            this.lblPlayer4Move.Name = "lblPlayer4Move";
+            this.lblPlayer4Move.Size = new System.Drawing.Size(72, 15);
+            this.lblPlayer4Move.TabIndex = 20;
+            this.lblPlayer4Move.Text = "Move Status";
+            // 
             // BattleBegins
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(176)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(829, 509);
+            this.Controls.Add(this.lblPlayer4Move);
+            this.Controls.Add(this.lblPlayer3Move);
+            this.Controls.Add(this.lblPlayer1Move);
+            this.Controls.Add(this.lblPlayer2Move);
             this.Controls.Add(this.lblGameStarts);
             this.Controls.Add(this.pnlActions);
             this.Controls.Add(this.lblValue);
@@ -300,5 +345,9 @@ namespace ClientServerGame
         private System.Windows.Forms.ComboBox cmbActions;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblGameStarts;
+        private System.Windows.Forms.Label lblPlayer2Move;
+        private System.Windows.Forms.Label lblPlayer1Move;
+        private System.Windows.Forms.Label lblPlayer3Move;
+        private System.Windows.Forms.Label lblPlayer4Move;
     }
 }

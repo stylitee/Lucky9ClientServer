@@ -32,5 +32,13 @@ namespace ClientServerGame.ProgramHelpers
             else
                 BattleBegins.gameStatus[0].Text = text;
         }
+
+        public static void MoveStatusLabel(string text, int counter)
+        {
+            if (BattleBegins._movestatus[counter].InvokeRequired)
+                BattleBegins._movestatus[counter].Invoke(new Action(() => BattleBegins._movestatus[counter].Text = text));
+            else
+                BattleBegins._movestatus[counter].Text = text;
+        }
     }
 }

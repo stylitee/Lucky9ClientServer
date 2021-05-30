@@ -205,7 +205,7 @@ namespace ClientServerGame
                 {
                     if(c.playerName == Program.playerName)
                     {
-                        PlayerHelper.updateReadyStatus(c.id);
+                        PlayerHelper.updateReadyStatus(c.id, "Yes");
                     }
                 }
                 

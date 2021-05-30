@@ -13,5 +13,6 @@ namespace ClientServerGame.Model
         public string card_values { get; set; }
         public string UpForSteal { get; set; }
         public string isReady { get; set; }
+        public string MoveStatus { get; set; }
     }
 }

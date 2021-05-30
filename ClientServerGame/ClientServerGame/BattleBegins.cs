@@ -18,6 +18,7 @@ namespace ClientServerGame
     public partial class BattleBegins : Form
     {
         public static List<Label> lstOfConnection = new List<Label>();
+        public static List<Label> _movestatus = new List<Label>();
         public static List<Label> gameStatus = new List<Label>();
         public static List<Panel> lspnlActions = new List<Panel>();
         public static List<ComboBox> comboBoxes = new List<ComboBox>();
@@ -36,12 +37,17 @@ namespace ClientServerGame
         List<Bitmap> nine = new List<Bitmap>();
         List<Bitmap> buklo = new List<Bitmap>();
 
+        int flag = 0;
         List<int> listCardValue = new List<int>();
         System.Timers.Timer aTimer = new System.Timers.Timer(999999999);
-        int connectionFlagChecker = 0, generation = 0, stoper = 0;
+        int connectionFlagChecker = 0, generation = 0, stoper = 0, moveChecker = 0;
         public BattleBegins()
         {
             InitializeComponent();
+            _movestatus.Add(lblPlayer1Move);
+            _movestatus.Add(lblPlayer2Move);
+            _movestatus.Add(lblPlayer3Move);
+            _movestatus.Add(lblPlayer4Move);
             gameStatus.Add(lblGameStarts);
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.Interval = 2000;
@@ -72,6 +78,47 @@ namespace ClientServerGame
             if(generation == 1)
             {
                 FunctionHelper.ConnectionLabelChangers("Cards Deployed");
+                if (flag == 0)
+                {
+                    generateCard();
+                    string values = "";
+                    int sum = 0;
+                    List<Player> players = new List<Player>();
+                    SqlParameter[] p = { new SqlParameter("@player_name", Program.playerName) };
+                    players = PlayerHelper.GetSelectedPlayers(p);
+                    foreach (var c in listCardValue)
+                    {
+                        values += ", " + c.ToString();
+                        sum += c;
+                    }
+
+                    if(sum.ToString().Length == 2)
+                    {
+                        lblValue.Text = sum.ToString().Remove(0, 1);
+                    }
+                    else
+                    {
+                        lblValue.Text = sum.ToString();
+                    }
+                    PlayerHelper.updateCardValues(players[0].id, values);
+                    lspnlActions[0].Show();
+                    flag = 1;
+                }
+            }
+
+            if(moveChecker == 0)
+            {
+                int counter = 0;
+                List<Player> players = new List<Player>();
+                players = PlayerHelper.GetPlayers();
+                foreach (var c in players)
+                {
+                    if (c.MoveStatus != null || c.MoveStatus != "")
+                    {
+                        FunctionHelper.MoveStatusLabel(c.MoveStatus, counter);
+                        counter++;
+                    }
+                }
             }
         }
 
@@ -124,9 +171,6 @@ namespace ClientServerGame
                     FunctionHelper.ImageChanger(buklo[generateBukloCardNum()], counter);
                 }
             }
-
-
-
         }
         public void connectionChecker()
         {
@@ -138,6 +182,7 @@ namespace ClientServerGame
                 if(c.isReady == "Yes")
                 {
                     string textSetter = "Connected";
+                    PlayerHelper.updateReadyStatus(c.id, "No");
                     FunctionHelper.ConnectionLabelChangers(textSetter, counter);
                     counter++;
                 }
@@ -185,16 +230,12 @@ namespace ClientServerGame
 
         private void lblGameStarts_TextChanged(object sender, EventArgs e)
         {
-            string values = "";
-            generateCard();
-            List<Player> players = new List<Player>();
-            SqlParameter[] p = { new SqlParameter("@player_name", Program.playerName) };
-            players = PlayerHelper.GetSelectedPlayers(p);
-            foreach(var c in listCardValue)
-            {
-                values += ", " + c.ToString();
-            }
-            PlayerHelper.updateCardValues(players[0].id, values);
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PlayerHelper.updateMoveStatus(Program.playerName, cmbActions.Text);
         }
 
         public int generateBukloCardNum()

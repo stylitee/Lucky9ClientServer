@@ -31,6 +31,7 @@ namespace ClientServerGame.Helpers
                     player.card_values = dr.Field<string>("card_values");
                     player.UpForSteal = dr.Field<string>("up_for_steal");
                     player.isReady = dr.Field<string>("is_ready");
+                    player.MoveStatus = dr.Field<string>("is_ready");
                     list.Add(player);
                 }
             }
@@ -56,6 +57,7 @@ namespace ClientServerGame.Helpers
                     player.card_values = dr.Field<string>("card_values");
                     player.UpForSteal = dr.Field<string>("up_for_steal");
                     player.isReady = dr.Field<string>("is_ready");
+                    player.MoveStatus = dr.Field<string>("is_ready");
                     list.Add(player);
                 }
             }
@@ -77,13 +79,13 @@ namespace ClientServerGame.Helpers
             }
         }
 
-        public static void updateReadyStatus(int player_id)
+        public static void updateReadyStatus(int player_id, string ready)
         {
             using (Connection db_conn = new Connection())
             {
                 if (!db_conn.IsConnected) return;
                 SqlParameter[] param = {
-                                           new SqlParameter("@isReady",               "Yes"),
+                                           new SqlParameter("@isReady",               ready),
                                            new SqlParameter("@player_id",             player_id),
                                        };
                 db_conn.ExecuteNonQuery("isReadyPlayer", param);
@@ -100,6 +102,20 @@ namespace ClientServerGame.Helpers
                                            new SqlParameter("@player_id",             player_id),
                                        };
                 db_conn.ExecuteNonQuery("AddCardValues", param);
+            }
+        }
+
+
+        public static void updateMoveStatus(string player_name, string MoveStatus)
+        {
+            using (Connection db_conn = new Connection())
+            {
+                if (!db_conn.IsConnected) return;
+                SqlParameter[] param = {
+                                           new SqlParameter("@player_name",               player_name),
+                                           new SqlParameter("@MoveStatus",             MoveStatus),
+                                       };
+                db_conn.ExecuteNonQuery("UpdateMoveStatus", param);
             }
         }
     }
